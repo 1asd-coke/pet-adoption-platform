@@ -23,7 +23,7 @@ Claw Pet 演示图片生成工具
   只有 --manifest 不需要它 —— 那个模式纯读文件、纯写 JSON。
 
 用法：
-  python demo-data/tools/build-demo-images.py --import "D:/32326/Pictures/Camera Roll/宠物"
+  python demo-data/tools/build-demo-images.py --import <照片素材目录>
   python demo-data/tools/build-demo-images.py
   python demo-data/tools/build-demo-images.py --manifest   # 只重建 manifest.json
 """
