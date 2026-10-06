@@ -113,36 +113,121 @@
 | **领养须知编辑器（多章节）** | **收容所信息管理** |
 | ![领养须知编辑器](screenshots/19-guide-manage.png) | ![收容所信息管理](screenshots/20-admin-shelter.png) |
 
-**🎬 动图演示**
+### 🎬 功能演示视频
+
+以下 **21 段**均为真实操作录屏（Playwright 驱动真实浏览器），覆盖从前台浏览到后台审核的完整业务闭环。
+
+#### 账号体系（登录 / 注册 / 找回 / 主题）
 
 <table>
 <tr>
-  <th>登录全流程（Redis 算术验证码）</th>
-  <th>主题一键切换（10 套配色）</th>
+  <th>① 登录（Redis 算术验证码）</th>
+  <th>② 注册（含密保问题设置）</th>
 </tr>
 <tr>
-  <td><video src="screenshots/clips/login-flow.mp4" controls muted preload="metadata" width="100%"></video></td>
-  <td><video src="screenshots/clips/theme-switch.mp4" controls muted preload="metadata" width="100%"></video></td>
+  <td><video src="screenshots/clips/01-login.mp4" controls muted preload="metadata" width="100%"></video></td>
+  <td><video src="screenshots/clips/02-register.mp4" controls muted preload="metadata" width="100%"></video></td>
 </tr>
 <tr>
-  <th>领养申请全流程</th>
-  <th>后台数据可视化仪表盘</th>
+  <th>③ 找回密码（验证 → 密保 → 重置）</th>
+  <th>④ 主题一键切换（10 套配色）</th>
 </tr>
 <tr>
-  <td><video src="screenshots/clips/adoption-apply.mp4" controls muted preload="metadata" width="100%"></video></td>
-  <td><video src="screenshots/clips/admin-dashboard.mp4" controls muted preload="metadata" width="100%"></video></td>
-</tr>
-<tr>
-  <th>WebSocket 实时通知 · 管理员端（右页提交申请，铃铛实时亮起）</th>
-  <th>WebSocket 实时通知 · 用户端（审核通过瞬间送达）</th>
-</tr>
-<tr>
-  <td><video src="screenshots/clips/realtime-admin.mp4" controls muted preload="metadata" width="100%"></video></td>
-  <td><video src="screenshots/clips/realtime-user.mp4" controls muted preload="metadata" width="100%"></video></td>
+  <td><video src="screenshots/clips/03-forgot-password.mp4" controls muted preload="metadata" width="100%"></video></td>
+  <td><video src="screenshots/clips/04-theme-switch.mp4" controls muted preload="metadata" width="100%"></video></td>
 </tr>
 </table>
 
-> 视频为真实操作录屏：登录走 Redis 验证码、申请/审核均为真实接口调用，WebSocket 推送为真实时序（非摆拍）。
+#### 前台浏览与互动
+
+<table>
+<tr>
+  <th>⑤ 首页（Banner 轮播 + 数据统计）</th>
+  <th>⑥ 宠物列表（分类筛选 + 关键词搜索）</th>
+</tr>
+<tr>
+  <td><video src="screenshots/clips/07-home.mp4" controls muted preload="metadata" width="100%"></video></td>
+  <td><video src="screenshots/clips/08-pet-list.mp4" controls muted preload="metadata" width="100%"></video></td>
+</tr>
+<tr>
+  <th>⑦ 宠物详情（图片轮播 + 收藏切换）</th>
+  <th>⑧ 发表评论与回复</th>
+</tr>
+<tr>
+  <td><video src="screenshots/clips/09-pet-detail.mp4" controls muted preload="metadata" width="100%"></video></td>
+  <td><video src="screenshots/clips/10-comment.mp4" controls muted preload="metadata" width="100%"></video></td>
+</tr>
+<tr>
+  <th>⑨ 发布领养故事（富文本编辑器）</th>
+  <th>⑩ 消息中心（我的 / 回复 / 通知）</th>
+</tr>
+<tr>
+  <td><video src="screenshots/clips/11-story.mp4" controls muted preload="metadata" width="100%"></video></td>
+  <td><video src="screenshots/clips/17-message-center.mp4" controls muted preload="metadata" width="100%"></video></td>
+</tr>
+</table>
+
+#### 🔥 领养业务闭环（本项目核心）
+
+<table>
+<tr>
+  <th>⑪ 提交领养申请（校验手机 / 地址 / 理由）</th>
+  <th>⑫ 我的申请（进度追踪 + 取消申请）</th>
+</tr>
+<tr>
+  <td><video src="screenshots/clips/12-adoption-apply.mp4" controls muted preload="metadata" width="100%"></video></td>
+  <td><video src="screenshots/clips/15-my-applications.mp4" controls muted preload="metadata" width="100%"></video></td>
+</tr>
+<tr>
+  <th>⑬ 管理员实时收到新申请（WebSocket 推送）</th>
+  <th>⑭ 审核通过（状态机流转 + 宠物置为已领养）</th>
+</tr>
+<tr>
+  <td><video src="screenshots/clips/13-realtime-admin.mp4" controls muted preload="metadata" width="100%"></video></td>
+  <td><video src="screenshots/clips/14-review-approve.mp4" controls muted preload="metadata" width="100%"></video></td>
+</tr>
+<tr>
+  <th>⑮ 用户实时收到审核结果（WebSocket 推送）</th>
+  <th></th>
+</tr>
+<tr>
+  <td><video src="screenshots/clips/16-realtime-user.mp4" controls muted preload="metadata" width="100%"></video></td>
+  <td></td>
+</tr>
+</table>
+
+> ⑬ → ⑭ → ⑮ 是**同一条申请**的完整时序：申请提交后管理员端铃铛实时亮起，审核通过后用户端立刻收到通知，全程无需刷新页面。
+
+#### 后台管理
+
+<table>
+<tr>
+  <th>⑯ 数据仪表盘（ECharts 趋势 + 分类占比）</th>
+  <th>⑰ 分类管理（新增 / 拖拽排序 / 删除）</th>
+</tr>
+<tr>
+  <td><video src="screenshots/clips/05-admin-dashboard.mp4" controls muted preload="metadata" width="100%"></video></td>
+  <td><video src="screenshots/clips/06-admin-category.mp4" controls muted preload="metadata" width="100%"></video></td>
+</tr>
+<tr>
+  <th>⑱ 新增宠物（表单 + 分类选择）</th>
+  <th>⑲ 领养记录与回访登记</th>
+</tr>
+<tr>
+  <td><video src="screenshots/clips/18-admin-pet-add.mp4" controls muted preload="metadata" width="100%"></video></td>
+  <td><video src="screenshots/clips/19-admin-record.mp4" controls muted preload="metadata" width="100%"></video></td>
+</tr>
+<tr>
+  <th>⑳ 用户管理</th>
+  <th>㉑ 内容管理（须知 / 常识 / 收容所）</th>
+</tr>
+<tr>
+  <td><video src="screenshots/clips/20-admin-user.mp4" controls muted preload="metadata" width="100%"></video></td>
+  <td><video src="screenshots/clips/21-admin-content.mp4" controls muted preload="metadata" width="100%"></video></td>
+</tr>
+</table>
+
+> 视频均为真实操作录屏：登录/注册走真实 Redis 验证码校验，申请与审核均为真实接口调用，WebSocket 推送为真实时序（非摆拍）。
 
 ---
 
