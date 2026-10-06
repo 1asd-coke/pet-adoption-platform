@@ -1,0 +1,52 @@
+# 后端构建上下文是仓库根目录，所以这个文件放在根目录。
+# 目的：把 node_modules / .git / target 这些体积大又用不到的东西挡在构建上下文之外，
+#       否则 docker build 光是「发送上下文」就要传几百 MB。
+
+# 版本控制
+.git
+.gitattributes
+.gitignore
+
+# 启动 / 部署脚本：容器里用不到（后端镜像有自己的 docker-entrypoint.sh）
+scripts
+
+# 前端整个目录（后端镜像用不到）
+claw-pet-web
+
+# 构建产物
+claw-pet-server/target
+**/target
+**/*.jar
+**/dist
+
+# 依赖
+**/node_modules
+
+# 素材源：运行时只用 images/pet/（1.1MB），
+# originals/ 是给人看的原始素材（1.9MB），后端镜像不需要
+demo-data/images/originals
+demo-data/tools
+demo-data/README.md
+
+# 上传目录的内容：图片靠卷持久化，镜像里不需要带
+claw-pet-server/upload/pet/*
+claw-pet-server/upload/avatar/*
+
+# 本地配置与运行产物
+.env
+.env.local
+*.log
+start.log
+.run
+dump.rdb
+*.rdb
+
+# 编辑器 / 系统
+.idea
+.vscode
+*.iml
+.DS_Store
+Thumbs.db
+
+# 本工作区私有目录
+.workbuddy

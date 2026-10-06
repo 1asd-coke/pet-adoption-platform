@@ -1,0 +1,201 @@
+{
+  "_comment": "由 demo-data/tools/build-demo-images.py 生成，请勿手工编辑",
+  "shelter": {
+    "description": "收容所图片（首页大图）",
+    "db_column": "shelter_info.image",
+    "original": "images/originals/shelter.jpg",
+    "demo": "shelter.jpg",
+    "db_url": "/profile/pet/shelter.jpg",
+    "size_original": 212055,
+    "size_demo": 146086
+  },
+  "unused": [
+    {
+      "original_name": "gou3.png",
+      "note": "狗狗备选 3",
+      "original": "images/originals/unused-01.jpg"
+    },
+    {
+      "original_name": "mao4.png",
+      "note": "猫咪备选 4",
+      "original": "images/originals/unused-02.jpg"
+    },
+    {
+      "original_name": "mao6.png",
+      "note": "猫咪备选 6",
+      "original": "images/originals/unused-03.jpg"
+    },
+    {
+      "original_name": "tuzi3.png",
+      "note": "兔子备选 3",
+      "original": "images/originals/unused-04.jpg"
+    }
+  ],
+  "pets": [
+    {
+      "pet_id": 1,
+      "pet_name": "奶糖",
+      "breed": "布偶猫",
+      "original_name": "奶糖.png",
+      "original": "images/originals/pet-01.jpg",
+      "demo": "demo-01.jpg",
+      "db_url": "/profile/pet/demo-01.jpg",
+      "size_original": 60389,
+      "size_demo": 40244
+    },
+    {
+      "pet_id": 2,
+      "pet_name": "年糕",
+      "breed": "橘猫",
+      "original_name": "年糕.png",
+      "original": "images/originals/pet-02.jpg",
+      "demo": "demo-02.jpg",
+      "db_url": "/profile/pet/demo-02.jpg",
+      "size_original": 85993,
+      "size_demo": 59299
+    },
+    {
+      "pet_id": 3,
+      "pet_name": "雪宝",
+      "breed": "英短银渐层",
+      "original_name": "雪宝.png",
+      "original": "images/originals/pet-03.jpg",
+      "demo": "demo-03.jpg",
+      "db_url": "/profile/pet/demo-03.jpg",
+      "size_original": 54274,
+      "size_demo": 37203
+    },
+    {
+      "pet_id": 4,
+      "pet_name": "墨宝",
+      "breed": "黑猫",
+      "original_name": "墨宝.png",
+      "original": "images/originals/pet-04.jpg",
+      "demo": "demo-04.jpg",
+      "db_url": "/profile/pet/demo-04.jpg",
+      "size_original": 188136,
+      "size_demo": 124845
+    },
+    {
+      "pet_id": 5,
+      "pet_name": "铁柱",
+      "breed": "中华田园犬",
+      "original_name": "铁柱.png",
+      "original": "images/originals/pet-05.jpg",
+      "demo": "demo-05.jpg",
+      "db_url": "/profile/pet/demo-05.jpg",
+      "size_original": 46095,
+      "size_demo": 30116
+    },
+    {
+      "pet_id": 6,
+      "pet_name": "团团",
+      "breed": "柴犬",
+      "original_name": "团团.png",
+      "original": "images/originals/pet-06.jpg",
+      "demo": "demo-06.jpg",
+      "db_url": "/profile/pet/demo-06.jpg",
+      "size_original": 130554,
+      "size_demo": 84223
+    },
+    {
+      "pet_id": 7,
+      "pet_name": "咖啡",
+      "breed": "拉布拉多",
+      "original_name": "咖啡.png",
+      "original": "images/originals/pet-07.jpg",
+      "demo": "demo-07.jpg",
+      "db_url": "/profile/pet/demo-07.jpg",
+      "size_original": 60561,
+      "size_demo": 41674
+    },
+    {
+      "pet_id": 8,
+      "pet_name": "豆花",
+      "breed": "边牧",
+      "original_name": "豆花.png",
+      "original": "images/originals/pet-08.jpg",
+      "demo": "demo-08.jpg",
+      "db_url": "/profile/pet/demo-08.jpg",
+      "size_original": 113401,
+      "size_demo": 75688
+    },
+    {
+      "pet_id": 9,
+      "pet_name": "跳跳",
+      "breed": "荷兰垂耳兔",
+      "original_name": "跳跳.png",
+      "original": "images/originals/pet-09.jpg",
+      "demo": "demo-09.jpg",
+      "db_url": "/profile/pet/demo-09.jpg",
+      "size_original": 81959,
+      "size_demo": 53214
+    },
+    {
+      "pet_id": 10,
+      "pet_name": "布丁",
+      "breed": "荷兰猪",
+      "original_name": "布丁.png",
+      "original": "images/originals/pet-10.jpg",
+      "demo": "demo-10.jpg",
+      "db_url": "/profile/pet/demo-10.jpg",
+      "size_original": 67117,
+      "size_demo": 44720
+    },
+    {
+      "pet_id": 11,
+      "pet_name": "绒绒",
+      "breed": "金丝熊仓鼠",
+      "original_name": "绒绒.png",
+      "original": "images/originals/pet-11.jpg",
+      "demo": "demo-11.jpg",
+      "db_url": "/profile/pet/demo-11.jpg",
+      "size_original": 84896,
+      "size_demo": 57476
+    },
+    {
+      "pet_id": 12,
+      "pet_name": "彩虹",
+      "breed": "虎皮鹦鹉",
+      "original_name": "虎皮鹦鹉1.png",
+      "original": "images/originals/pet-12.jpg",
+      "demo": "demo-12.jpg",
+      "db_url": "/profile/pet/demo-12.jpg",
+      "size_original": 82578,
+      "size_demo": 53629
+    },
+    {
+      "pet_id": 13,
+      "pet_name": "咕咕",
+      "breed": "玄凤鹦鹉",
+      "original_name": "玄凤鹦鹉.png",
+      "original": "images/originals/pet-13.jpg",
+      "demo": "demo-13.jpg",
+      "db_url": "/profile/pet/demo-13.jpg",
+      "size_original": 79474,
+      "size_demo": 49640
+    },
+    {
+      "pet_id": 14,
+      "pet_name": "闪电",
+      "breed": "蜜袋鼯",
+      "original_name": "蜜袋鼯1.png",
+      "original": "images/originals/pet-14.jpg",
+      "demo": "demo-14.jpg",
+      "db_url": "/profile/pet/demo-14.jpg",
+      "size_original": 90460,
+      "size_demo": 55983
+    },
+    {
+      "pet_id": 15,
+      "pet_name": "憨憨",
+      "breed": "法斗",
+      "original_name": "憨憨.png",
+      "original": "images/originals/pet-15.jpg",
+      "demo": "demo-15.jpg",
+      "db_url": "/profile/pet/demo-15.jpg",
+      "size_original": 108645,
+      "size_demo": 73326
+    }
+  ]
+}

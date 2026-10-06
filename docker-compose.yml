@@ -1,0 +1,147 @@
+# ============================================================
+# Claw Pet 一键部署（Docker Compose）
+#
+# 四个容器：
+#   mysql    数据库（首次启动自动执行 demo-data/sql 里的建表 + 演示数据）
+#   redis    缓存 + 验证码
+#   backend  Spring Boot 后端
+#   frontend Vue 构建产物 + Nginx（对外的唯一入口）
+#
+# 用法：
+#   cp .env.example .env      # 然后填好里面的密码
+#   docker compose up -d --build
+#   打开 http://localhost:3000
+#
+# 或者直接用仓库里的部署脚本：./scripts/deploy.sh（Windows: .\scripts\deploy.ps1）
+#
+# 停止：      docker compose down
+# 连数据一起删：docker compose down -v     ← 会清空数据库和上传的图片
+# ============================================================
+
+name: claw-pet
+
+services:
+
+  # ------------------------------------------------------------
+  # 数据库
+  # ------------------------------------------------------------
+  mysql:
+    image: mysql:8.0
+    container_name: claw-pet-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:?请先在 .env 里设置 DB_PASSWORD（数据库 root 密码）}
+      MYSQL_DATABASE: ${DB_NAME:-claw_pet}
+      TZ: Asia/Shanghai
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_0900_ai_ci
+      # 演示项目不需要 binlog，关掉省磁盘
+      - --skip-log-bin
+    volumes:
+      - mysql-data:/var/lib/mysql
+      # 建表 + 演示数据。⚠️ 只在数据卷为空时执行一次，
+      # 改了 SQL 想重新导入，需要先 docker compose down -v
+      - ./demo-data/sql:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      # 用 TCP 探活（官方镜像初始化期间用的是 --skip-networking 的临时实例，
+      # 这时探不通 —— 正好用来判断"初始化到底完成没有"）
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p\"$$MYSQL_ROOT_PASSWORD\" --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+    networks: [claw-net]
+
+  # ------------------------------------------------------------
+  # 缓存 / 验证码
+  # ------------------------------------------------------------
+  redis:
+    image: redis:7-alpine
+    container_name: claw-pet-redis
+    restart: unless-stopped
+    # 直接开密码并强制要求配好。
+    # （不用「有密码才加 --requirepass」那种条件写法：compose 的变量插值
+    #   不支持嵌套，写出来既难读又容易踩坑，不如老老实实要求一个密码。）
+    command: ["redis-server", "--appendonly", "yes",
+              "--requirepass", "${REDIS_PASSWORD:?请先在 .env 里设置 REDIS_PASSWORD}"]
+    environment:
+      TZ: Asia/Shanghai
+      REDIS_PASSWORD: ${REDIS_PASSWORD:?}
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli -a \"$$REDIS_PASSWORD\" ping | grep -q PONG"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+    networks: [claw-net]
+
+  # ------------------------------------------------------------
+  # 后端
+  # ------------------------------------------------------------
+  backend:
+    build:
+      # 上下文必须是仓库根目录：要用到 demo-data/images/pet（打演示图进镜像）
+      context: .
+      dockerfile: claw-pet-server/Dockerfile
+    image: claw-pet-server:latest
+    container_name: claw-pet-backend
+    restart: unless-stopped
+    environment:
+      DB_URL: "jdbc:mysql://mysql:3306/${DB_NAME:-claw_pet}?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true"
+      DB_USERNAME: ${DB_USERNAME:-root}
+      DB_PASSWORD: ${DB_PASSWORD:?请先在 .env 里设置 DB_PASSWORD}
+      REDIS_HOST: redis
+      REDIS_PORT: "6379"
+      REDIS_PASSWORD: ${REDIS_PASSWORD:-}
+      JWT_SECRET: ${JWT_SECRET:?请先在 .env 里设置 JWT_SECRET（至少 32 个字符）}
+      SERVER_PORT: "8081"
+      TZ: Asia/Shanghai
+      JAVA_OPTS: ${JAVA_OPTS:--Xms256m -Xmx512m}
+    volumes:
+      # 用户上传的图片要能活过容器重建，所以挂卷而不是留在容器里
+      - upload-data:/app/upload
+    ports:
+      # 对外暴露后端主要是为了方便调接口 / 看 Swagger 之类；
+      # 正常只用得着前端的 3000，不需要的话可以把这两行注释掉
+      - "${BACKEND_PORT:-8081}:8081"
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks: [claw-net]
+
+  # ------------------------------------------------------------
+  # 前端（对外的唯一入口）
+  # ------------------------------------------------------------
+  frontend:
+    build:
+      context: ./claw-pet-web
+      dockerfile: Dockerfile
+    image: claw-pet-web:latest
+    container_name: claw-pet-web
+    restart: unless-stopped
+    environment:
+      TZ: Asia/Shanghai
+    ports:
+      - "${WEB_PORT:-3000}:80"
+    depends_on:
+      backend:
+        condition: service_started
+    networks: [claw-net]
+
+# ------------------------------------------------------------
+volumes:
+  mysql-data:
+    name: claw-pet-mysql-data
+  redis-data:
+    name: claw-pet-redis-data
+  upload-data:
+    name: claw-pet-upload-data
+
+networks:
+  claw-net:
+    name: claw-pet-net
+    driver: bridge

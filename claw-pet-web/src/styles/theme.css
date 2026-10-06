@@ -1,0 +1,386 @@
+/* ========================================
+   Claw Pet — Premium Design Theme
+   ======================================== */
+
+/* ---------- Design Tokens ---------- */
+:root {
+  /* Brand Colors - Minimal White */
+  --brand-primary: #2a2a2a;
+  --brand-primary-hover: #3a3a3a;
+  --brand-primary-active: #1a1a1a;
+  --brand-primary-light: #f5f5f5;
+
+  /* Accent */
+  --accent-gold: #d4d4d4;
+  --accent-gold-light: #f5f5f5;
+
+  /* Semantic Colors */
+  --color-success: #34c759;
+  --color-warning: #ff9500;
+  --color-danger: #ff3b30;
+  --color-info: #2a2a2a;
+
+  /* Neutral Palette - Clean White */
+  --bg-page: #fafafa;
+  --bg-card: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --bg-tertiary: #eeeeee;
+  --text-primary: #1a1a1a;
+  --text-secondary: #6b6b6b;
+  --text-tertiary: #9e9e9e;
+  --border-color: #e0e0e0;
+  --border-light: #e5e5e5;
+
+  /* Primary-tinted surfaces */
+  --surface-primary: rgba(42, 42, 42, 0.08);
+  --surface-primary-strong: rgba(42, 42, 42, 0.15);
+  --shadow-primary: rgba(42, 42, 42, 0.12);
+  --shadow-primary-hover: rgba(42, 42, 42, 0.15);
+  --shadow-primary-20: rgba(42, 42, 42, 0.2);
+  --shadow-primary-25: rgba(42, 42, 42, 0.25);
+  --shadow-primary-30: rgba(42, 42, 42, 0.3);
+  --shadow-primary-40: rgba(42, 42, 42, 0.4);
+  --shadow-primary-50: rgba(42, 42, 42, 0.5);
+  --shadow-primary-08: rgba(42, 42, 42, 0.08);
+
+  /* Shadows - Elevated */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.07);
+  --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.08);
+
+  /* Typography */
+  --font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', 'PingFang SC', 'Noto Sans SC', sans-serif;
+  --font-mono: 'SF Mono', 'Fira Code', monospace;
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+}
+
+/* ---------- Element Plus Theme ---------- */
+:root {
+  --el-color-primary: #2a2a2a;
+  --el-color-primary-dark-2: #1a1a1a;
+  --el-color-primary-light-3: #555555;
+  --el-color-primary-light-5: #777777;
+  --el-color-primary-light-7: #aaaaaa;
+  --el-color-primary-light-8: #cccccc;
+  --el-color-primary-light-9: #e5e5e5;
+  --el-color-primary-light-10: #f5f5f5;
+
+  --el-color-success: #34c759;
+  --el-color-warning: #ff9500;
+  --el-color-danger: #ff3b30;
+  --el-color-info: #e8a0c8;
+
+  --el-bg-color: #F3E9F7;
+  --el-bg-color-overlay: #ffffff;
+  --el-text-color-primary: #2A1F3D;
+  --el-text-color-regular: #3D314F;
+  --el-text-color-secondary: #7C7C8A;
+  --el-text-color-placeholder: #B0A8C0;
+  --el-border-color: #D8D0E0;
+  --el-border-color-light: #E8E2EC;
+  --el-border-color-lighter: #F0ECF4;
+  --el-fill-color: #F3E9F7;
+  --el-fill-color-light: #FBF8FC;
+  --el-fill-color-lighter: #FCFAFD;
+
+  --el-font-size-base: 14px;
+  --el-font-size-small: 12px;
+  --el-font-size-large: 16px;
+
+  --el-border-radius-base: 12px;
+  --el-border-radius-small: 8px;
+  --el-border-radius-round: 24px;
+
+  --el-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* ---------- Global Base Styles ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  color: var(--text-primary);
+  background: linear-gradient(135deg, var(--bg-page) 0%, var(--brand-primary-light) 50%, var(--bg-page) 100%) !important;
+  background-attachment: fixed !important;
+  min-height: 100vh;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+}
+
+#app { min-height: 100vh; }
+
+/* ---------- Card ---------- */
+.theme-card {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 16px rgba(120, 90, 200, 0.04);
+}
+
+/* ---------- Page Container ---------- */
+.page-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/** 管理后台通用页面 */
+.admin-page {
+  padding: 0;
+}
+
+/** 管理后台卡片 */
+.admin-page .theme-card {
+  transition: all 0.3s ease;
+}
+
+/** 管理后台表格卡片气泡 */
+.admin-page .theme-card :deep(.el-card__body) {
+  padding: 20px;
+}
+
+.admin-page .theme-card :deep(.el-table) {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.admin-page .theme-card :deep(.el-table th.el-table__cell) {
+  background: rgba(255, 255, 255, 0.35);
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.admin-page .theme-card :deep(.el-table tr) {
+  transition: all 0.2s ease;
+}
+
+.admin-page .theme-card :deep(.el-table tr:hover > td) {
+  background: rgba(120, 90, 200, 0.04) !important;
+}
+
+.admin-page .theme-card :deep(.el-table td.el-table__cell) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  transition: background 0.2s ease;
+}
+
+/** 状态标签 - 灵动小圆点 */
+.admin-page .el-tag {
+  border-radius: 8px;
+  font-weight: 500;
+  border: none;
+  padding: 0 10px;
+  height: 22px;
+  line-height: 22px;
+  font-size: 12px;
+}
+
+.admin-page .el-tag--success {
+  background: rgba(52, 199, 89, 0.12);
+  color: #34c759;
+}
+
+.admin-page .el-tag--warning {
+  background: rgba(255, 149, 0, 0.12);
+  color: #ff9500;
+}
+
+.admin-page .el-tag--danger {
+  background: rgba(245, 108, 108, 0.12);
+  color: #f56c6c;
+}
+
+.admin-page .el-tag--info {
+  background: rgba(120, 120, 130, 0.12);
+  color: #787882;
+}
+
+/** 操作按钮 - 灵动微动 */
+.admin-page .el-table .el-button {
+  transition: all 0.2s ease;
+}
+
+.admin-page .el-table .el-button:hover {
+  transform: translateY(-1px);
+}
+
+/** 分页 */
+.admin-page .el-pagination {
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.admin-page .el-pagination .btn-prev,
+.admin-page .el-pagination .btn-next,
+.admin-page .el-pagination .el-pager li {
+  background: rgba(255, 255, 255, 0.6) !important;
+  border-radius: 8px !important;
+  transition: all 0.2s ease;
+}
+
+.admin-page .el-pagination .el-pager li.is-active {
+  background: var(--brand-primary) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 12px var(--shadow-primary-30);
+}
+
+.section-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 10px;
+  letter-spacing: -0.01em;
+}
+
+/* ---------- Button ---------- */
+.el-button--primary {
+  --el-button-bg-color: var(--brand-primary);
+  --el-button-border-color: var(--brand-primary);
+  --el-button-hover-bg-color: var(--brand-primary-hover);
+  --el-button-hover-border-color: var(--brand-primary-hover);
+  --el-button-active-bg-color: var(--brand-primary-active);
+  border-radius: 24px !important;
+  font-weight: 500;
+  padding: 10px 22px;
+}
+
+.el-button--primary.is-plain {
+  --el-button-bg-color: var(--brand-primary-light);
+  --el-button-text-color: var(--brand-primary);
+  --el-button-border-color: transparent;
+  --el-button-hover-bg-color: var(--brand-primary);
+  --el-button-hover-text-color: #fff;
+  border-radius: 24px !important;
+}
+
+.el-button--default {
+  border-radius: 24px !important;
+}
+
+/* ---------- Table ---------- */
+.el-table {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 0.5px solid var(--border-light);
+}
+
+.el-table thead th {
+  background: var(--bg-secondary) !important;
+  color: var(--text-secondary) !important;
+  font-weight: 500 !important;
+  font-size: 12px !important;
+  letter-spacing: 0.05em;
+}
+
+.el-table__body tr:hover > td {
+  background: #F6F0FA !important;
+}
+
+/* ---------- Input ---------- */
+.el-input__wrapper {
+  border-radius: var(--radius-sm) !important;
+  box-shadow: 0 0 0 1px var(--el-border-color) inset !important;
+  background: #fff !important;
+  transition: all 0.2s ease;
+}
+
+.el-input__wrapper:hover {
+  box-shadow: 0 0 0 1px var(--text-secondary) inset !important;
+}
+
+.el-input__wrapper.is-focus {
+  box-shadow: 0 0 0 2px var(--el-color-primary) inset !important;
+}
+
+/* ---------- Dialog ---------- */
+.el-dialog {
+  border-radius: var(--radius-xl) !important;
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.el-dialog__header {
+  padding: 24px 28px 0;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.el-dialog__body { padding: 20px 28px; }
+.el-dialog__footer { padding: 0 28px 24px; }
+
+/* ---------- Tag ---------- */
+.el-tag {
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.el-tag--primary {
+  --el-tag-bg-color: #EDE6F3;
+  --el-tag-text-color: #6C3E94;
+}
+
+/* ---------- Menu ---------- */
+.el-menu--horizontal { border-bottom: none !important; }
+.el-menu--horizontal > .el-menu-item,
+.el-menu--horizontal > .el-sub-menu > .el-sub-menu__title {
+  height: 52px !important;
+  line-height: 52px !important;
+  min-width: 100px !important;
+  justify-content: center !important;
+  padding: 0 18px !important;
+  margin: 0 2px !important;
+  border-radius: 8px !important;
+  border-bottom: 2px solid transparent !important;
+  transition: all 0.2s ease !important;
+}
+.el-menu--horizontal .el-menu-item.is-active {
+  color: var(--brand-primary) !important;
+  background: var(--brand-primary-light) !important;
+  border-bottom-color: var(--brand-primary) !important;
+  font-weight: 600;
+}
+.el-menu--horizontal .el-sub-menu.is-active > .el-sub-menu__title {
+  color: var(--brand-primary) !important;
+  background: var(--brand-primary-light) !important;
+  border-bottom-color: var(--brand-primary) !important;
+  font-weight: 600;
+}
+.el-menu--horizontal .el-menu-item:hover,
+.el-menu--horizontal .el-sub-menu__title:hover {
+  color: var(--brand-primary) !important;
+  background: var(--bg-tertiary) !important;
+  border-bottom-color: var(--brand-primary-light) !important;
+}
+
+/* 路由激活态：自定义 class 兜底，覆盖 el-sub-menu 激活样式不生效的场景 */
+.el-menu--horizontal .el-sub-menu.route-active > .el-sub-menu__title {
+  color: var(--brand-primary) !important;
+  background: var(--brand-primary-light) !important;
+  border-bottom-color: var(--brand-primary) !important;
+  font-weight: 600;
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #D8D6D0; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #B0B0BA; }

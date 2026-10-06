@@ -1,0 +1,23 @@
+# 前端构建上下文就是 claw-pet-web/ 本身，这里挡掉不需要进镜像的东西。
+
+node_modules
+dist
+
+# 本地配置
+.env
+.env.local
+
+# 编辑器 / 系统
+.idea
+.vscode
+*.iml
+.DS_Store
+Thumbs.db
+
+# 文档：镜像里不需要，但也不占体积，留着无妨。这里排掉纯属干净起见。
+README.md
+README.txt
+
+# 构建缓存
+vite.config.js.timestamp-*.mjs
+*.log

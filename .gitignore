@@ -1,0 +1,69 @@
+# Java
+target/
+*.class
+*.jar
+*.war
+*.log
+
+# Maven
+.mvn/
+mvnw
+mvnw.cmd
+
+# Node
+node_modules/
+dist/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Env (保留 .env.example 作为模板)
+.env
+.env.local
+
+# Uploads (keep folder, ignore content)
+claw-pet-server/upload/pet/*
+claw-pet-server/upload/avatar/*
+!claw-pet-server/upload/pet/.gitkeep
+!claw-pet-server/upload/avatar/.gitkeep
+
+# Redis 快照（在本目录跑过 redis-server 就会生成）
+dump.rdb
+*.rdb
+
+# 启动脚本的运行产物（PID、日志）
+start.log
+.run/
+
+# 演示数据统一放在顶层 demo-data/（不在忽略范围内，随仓库分发）
+# 目录结构见 demo-data/README.md
+
+# System
+Thumbs.db
+.DS_Store
+*.swp
+
+# WorkBuddy personal workspace data (memory, config, notes)
+.workbuddy/
+
+# Audit / analysis notes (本地分析报告，不上传)
+优化计划.txt
+全维度审计报告.txt
+安全深度审计.txt
+部署配置分析.txt
+边界情况分析.txt
+数据模型与缓存分析.txt
+前端死代码分析.txt
+
+# Vite build timestamp caches
+# 用 **/ 而不是写死目录：这些文件是 vite 在「任意目录」下生成的，
+# 之前写成 claw-pet-web/... ，前端目录一改名规则就失效（历史上正是从 claw-pet-vue/ 迁过来的）。
+# 里面含作者本机绝对路径，绝不能入库。
+**/vite.config.js.timestamp-*.mjs
+
+# 站点构建产物
+# docs/ 是给 Gitee Pages 发布用的打包结果（历史上进过 88 个文件 / 11.58 MB）。
+# 它是生成物、能随时重建，不入库；Gitee Pages 需要的话改为在线构建。
+docs/
