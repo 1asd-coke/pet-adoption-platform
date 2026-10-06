@@ -6,7 +6,7 @@
 
 *用爱给流浪动物一个温暖的家*
 
-[![Java](https://img.shields.io/badge/Java-17-blue?style=flat-square&logo=coffeescript)](https://www.oracle.com/java/)
+[![Java](https://img.shields.io/badge/Java-17-blue?style=flat-square&logo=openjdk)](https://www.oracle.com/java/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2-brightgreen?style=flat-square&logo=springboot)](https://spring.io/projects/spring-boot)
 [![Vue](https://img.shields.io/badge/Vue-3.4-4FC08D?style=flat-square&logo=vuedotjs)](https://vuejs.org/)
 [![MySQL](https://img.shields.io/badge/MySQL-8.0-orange?style=flat-square&logo=mysql)](https://www.mysql.com/)
@@ -35,7 +35,7 @@
 
 ### 核心数据
 
-- **50+** RESTful API
+- **79** 个 RESTful API
 - **17** 个后端 Controller
 - **15** 张数据库表
 - **8** 大业务模块
@@ -45,21 +45,33 @@
 
 | 场景 | 命令 | 本机需要装什么 |
 |------|------|---------------|
+| **零基础上手** | `quick-start.bat`（Windows 双击） | 脚本自动检查并安装 Docker / WSL2 / 镜像加速 |
 | **本地开发** | `start.bat`（Windows 双击）/ `./scripts/start.sh` | JDK 17 · Maven · Node · MySQL 8 · Redis |
 | **容器部署** | `deploy.bat`（Windows 双击）/ `./scripts/deploy.sh` | **只要 Docker** |
 
+- `quick-start.bat` —— 面向「刚 clone 下来什么都没装」的用户：7 步检查（系统 / Docker / WSL2 / 引擎 / 国内镜像 / 端口），能自动修就自动修，最后调`deploy` 完成部署
 - `start.*` —— 用你本机的环境直接跑，改代码即时生效，适合开发调试
 - `deploy.*` —— 把 MySQL / Redis / 后端 / 前端打包成 **4 个容器**，一条命令全起，适合交付和上线
 
-两个脚本互不干扰，可以共存。`start.*` 还会自动读 `.env` → 起 MySQL/Redis →
+三个脚本互不干扰，可以共存。`start.*` 还会自动读 `.env` → 起 MySQL/Redis →
 还原演示图片 → 装前端依赖 → 起前后端 → 开浏览器；`./scripts/stop.sh` 用来停。
 
-> 脚本本体在 `scripts/` 下，根目录只留两个 Windows 双击入口。所有脚本都会自己往上退一级
+> 脚本本体在 `scripts/` 下，根目录只留三个 Windows 双击入口。所有脚本都会自己往上退一级
 > 定位仓库根目录，所以 `.env` / `docker-compose.yml` / `demo-data/` 的相对路径不受位置影响。
+> 各脚本的参数与排错见 [`scripts/README.txt`](./scripts/README.txt)。
+
+### 代表功能
+
+| 领养申请（资料自动带入） | 后台数据仪表盘 |
+|:---:|:---:|
+| ![领养申请审核](screenshots/24-admin-approval.png) | ![后台数据仪表盘](screenshots/14-admin-dashboard.png) |
+| **用户侧：填资料 → 提交 → 实时收到审核结果** | **管理侧：ECharts 趋势 + 分类占比 + 待审统计** |
 
 ---
 
-## 📸 页面展示
+<details>
+<summary><b>🖼 全部页面截图（29 张）— 点击展开</b></summary>
+
 
 > 共 29 张实机截图，原图在 [`screenshots/`](./screenshots) 目录
 
@@ -113,7 +125,12 @@
 | **领养须知编辑器（多章节）** | **收容所信息管理** |
 | ![领养须知编辑器](screenshots/19-guide-manage.png) | ![收容所信息管理](screenshots/20-admin-shelter.png) |
 
-### 🎬 功能演示动图
+
+</details>
+
+<details>
+<summary><b>🎬 完整功能演示动图（27 段· 1920×1080 录屏）— 点击展开</b></summary>
+
 
 以下 **27 段**均为真实操作录屏（Playwright 驱动真实浏览器，**1920×1080** 拍摄，自动循环播放），覆盖从前台浏览到后台审核的完整业务闭环。
 
@@ -293,6 +310,8 @@
 
 ---
 
+
+</details>
 ## 📁 项目结构
 
 ```
@@ -402,7 +421,7 @@ Claw-Pet/
                           HTTP │ REST API    WS  │ WebSocket
                                ▼                 ▼
 ┌──────────────────────────────────────────────────────────────────┐
-│                      Spring Boot 3.2 后端 (:8081)                 │
+│                 Spring Boot 3.2 后端（容器内 :8081）              │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────────┐  │
 │  │ Security │  │ Controller│  │ Service  │  │  WebSocket Push  │  │
 │  │  Filter  │→ │  Layer   │→ │  Layer   │  │  (Notification)  │  │
@@ -421,7 +440,7 @@ Claw-Pet/
 └───────────────┘          └────────────────┘
 
 ┌──────────────────────────────────────────────────────────────────┐
-│                      Vue 3 前端 (:3001)                           │
+│                 Vue 3 前端（对外 :3000 / 本地开发 :3001）         │
 │   ┌────────┐  ┌──────────┐  ┌────────┐  ┌────────────────────┐  │
 │   │ Router │  │  Stores  │  │  Axios │  │  WebSocket Client  │  │
 │   │ (Hash) │  │ (Pinia)  │  │ 拦截器  │  │   (自动重连)        │  │
@@ -563,7 +582,8 @@ Claw-Pet/
 
 ---
 
-## 🗃️ 数据模型
+<details>
+<summary><b>🗃️ 数据模型（15 张表 · 字段说明）— 点击展开</b></summary>
 
 数据库 `claw_pet`（MySQL 8.0，utf8mb4），共 **15 张表**：
 
@@ -607,10 +627,12 @@ adoption_story   (领养故事)
 | `adoption_story` | id, user_id, title, content, status | 领养故事 |
 
 ---
+</details>
 
-## 🔌 API 接口
+<details>
+<summary><b>🔌 API 接口清单（79 个 · 按权限分层）— 点击展开</b></summary>
 
-后端共 **50+ 个 RESTful API**，按权限分三层：
+后端共 **79 个 RESTful API**，按权限分三层：
 
 ### 🔓 公开接口（无需认证）
 
@@ -627,13 +649,13 @@ adoption_story   (领养故事)
 | GET | `/api/category/list` | 分类列表 |
 | GET | `/api/stats/home` | 首页统计数据 |
 | GET | `/api/shelter` | 收容所信息 |
-| POST | `/api/upload/pet-image` | 上传宠物图片（三级校验） |
-| POST | `/api/upload/avatar` | 上传用户头像 |
 
 ### 🔐 需登录接口
 
 | 方法 | 路径 | 说明 |
 |------|------|------|
+| POST | `/api/upload/pet-image` | 上传宠物图片（三级校验） |
+| POST | `/api/upload/avatar` | 上传用户头像 |
 | POST | `/api/adopt/apply` | 提交领养申请 |
 | GET | `/api/adopt/my` | 我的领养申请列表 |
 | DELETE | `/api/adopt/{id}` | 取消申请 |
@@ -682,6 +704,7 @@ adoption_story   (领养故事)
 > **鉴权方式**：请求头 `Authorization: Bearer <JWT_TOKEN>`，Token 有效期 24 小时。
 
 ---
+</details>
 
 ## ✨ 技术亮点
 
@@ -696,7 +719,6 @@ adoption_story   (领养故事)
 ### 2. 实时通信
 
 - **WebSocket 双向推送**：通知（评论回复、审核结果）即时送达，无需刷新
-- **推拉结合**：WebSocket 为主通道，REST API 轮询兜底，断连时自动降级
 - **自动重连**：前端 `useWebSocket` 组合式函数封装断线重连逻辑，Token 过期主动清理
 
 ### 3. 业务工程化
@@ -802,6 +824,9 @@ chmod +x scripts/start.sh
 > ⚠️ **数据库还是空的？** 一键脚本不负责建库导数据，第一次仍然需要跑一遍下面的「Step 1 初始化数据库」。
 
 ---
+
+<details>
+<summary><b>方式 C：手动启动（不用脚本，逐条命令）— 点击展开</b></summary>
 
 ### 方式 C：手动启动
 
@@ -917,6 +942,8 @@ npm run dev
 
 
 ---
+
+</details>
 
 ## ⚙️ 配置说明
 
@@ -1107,6 +1134,8 @@ BACKEND_PORT=8081    # 后端端口，只是方便调接口，可以不管
 Redis 起不来也不影响浏览、领养、评论，只是登录验证码这一环不可用。
 </details>
 
+### 更多问题
+
 <details>
 <summary><b>Q: 启动日志里有 JWT 密钥告警，要紧吗？</b></summary>
 
@@ -1250,7 +1279,7 @@ Redis 起不来也不影响浏览、领养、评论，只是登录验证码这�
 **仓库根目录整理：**
 
 - 🗂 **启动 / 部署脚本收进 `scripts/`**：根目录原来是 7 个脚本平铺，没法一眼看出哪两个是一对。
-  现在按功能分族 —— 真正干活的 5 个进 `scripts/`，根目录只留 `start.bat` / `deploy.bat` 两个双击入口。
+  现在按功能分族 —— 真正干活的 5 个进 `scripts/`，根目录只留 `quick-start.bat` / `start.bat` / `deploy.bat` 三个双击入口。
   根目录条目从 17 项降到 13 项（9 个文件 + 4 个目录），每一项要么是入口、要么是配置、要么是文档
 - 🔧 **脚本内部改成「向上退一级」定位仓库根目录**：`$ROOT` 从「脚本所在目录」改为「脚本所在目录的上一级」，
   所以 `.env`、`docker-compose.yml`、`demo-data/` 这些相对路径仍然锚定根目录，调用方式不受影响
@@ -1265,7 +1294,11 @@ Redis 起不来也不影响浏览、领养、评论，只是登录验证码这�
   正好说反了 —— 实际策略是 `* text=auto eol=lf`，即**仓库里统一存 LF**，检出时按平台转换
   （`.bat` / `.ps1` 是例外，强制 CRLF）
 
-### v2.1.0 (2026-10-06)
+### 更早版本（v2.1.0 及以前） (2026-10-06)
+
+<details>
+<summary><b>点击展开 v2.1.0 / v2.0.0 / v1.0.0 的详细记录</b></summary>
+
 
 **部署体验（主要目的：让 clone 下来的人能直接跑起来）：**
 - 🔧 **补上一键启动脚本**：`start.bat` / `start.ps1`（Windows）、`start.sh` + `stop.sh`（macOS/Linux）。
@@ -1329,6 +1362,8 @@ Redis 起不来也不影响浏览、领养、评论，只是登录验证码这�
 - ✨ Redis 缓存加速
 
 ---
+
+</details>
 
 ## 📄 许可证
 
