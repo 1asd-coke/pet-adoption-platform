@@ -46,7 +46,7 @@
 - **8** 大业务模块
 - **3** 层权限体系（游客 / 用户 / 管理员）
 
-### 两种跑法，各自只要一条命令
+### 三种跑法，各自只要一条命令
 
 | 场景        | 命令                                              | 本机需要装什么                                 |
 | --------- | ----------------------------------------------- | --------------------------------------- |
@@ -54,13 +54,11 @@
 | **本地开发**  | `start.bat`（Windows 双击）/ `./scripts/start.sh`   | JDK 17 · Maven · Node · MySQL 8 · Redis |
 | **容器部署**  | `deploy.bat`（Windows 双击）/ `./scripts/deploy.sh` | **只要 Docker**                           |
 
-- `quick-start.bat` —— 面向「刚 clone 下来什么都没装」的用户：7 步检查（系统 / Docker / WSL2 / 引擎 / 国内镜像 / 端口），能自动修就自动修，最后调`deploy` 完成部署
+- `quick-start.bat` —— 面向「刚 clone 下来什么都没装」的用户：7 步检查（系统 / Docker / WSL2 / 引擎 / 国内镜像 / 端口），能自动修就自动修，最后调 `deploy` 完成部署并自动打开浏览器
 - `start.*` —— 用你本机的环境直接跑，改代码即时生效，适合开发调试
 - `deploy.*` —— 把 MySQL / Redis / 后端 / 前端打包成 **4 个容器**，一条命令全起，适合交付和上线
 
-三个脚本互不干扰，可以共存。`start.*` 还会自动读 `.env` → 起 MySQL/Redis →
-  
-还原演示图片 → 装前端依赖 → 起前后端 → 开浏览器；`./scripts/stop.sh` 用来停。
+三个脚本互不干扰，可以共存。`start.*` 还会自动读 `.env` → 起 MySQL/Redis → 还原演示图片 → 装前端依赖 → 起前后端 → 开浏览器；`./scripts/stop.sh` 用来停。
 
 > 脚本本体在 `scripts/` 下，根目录只留三个 Windows 双击入口。所有脚本都会自己往上退一级
 >   
@@ -71,10 +69,19 @@
 
 ### 代表功能
 
-|         领养申请（资料自动带入）        |              后台数据仪表盘             |
-| :-------------------------: | :------------------------------: |
-|            领养申请审核           |              后台数据仪表盘             |
-| **用户侧：填资料 → 提交 → 实时收到审核结果** | **管理侧：ECharts 趋势 + 分类占比 + 待审统计** |
+<table>
+<tr>
+  <th>用户侧 · 领养申请全流程（资料自动带入）</th>
+  <th>管理侧 · 后台数据可视化仪表盘</th>
+</tr>
+<tr>
+  <td><img src="screenshots/gifs/16-adoption-apply.gif" alt="领养申请全流程" width="100%" /></td>
+  <td><img src="screenshots/gifs/21-admin-dashboard.gif" alt="后台数据仪表盘" width="100%" /></td>
+</tr>
+</table>
+
+> 领养申请提交后经 WebSocket 实时推送：管理员后台即时收到待审提醒，审核结果又实时回推给用户 —— 双向闭环。
+> 完整的 27 段演示在下方折叠区 👇
 
 ---
 
@@ -89,51 +96,51 @@
 
 |     主页    |    宠物列表    |
 | :-------: | :--------: |
-|     主页    |    宠物列表    |
-|  **宠物详情** |  **关键词分类** |
-|    宠物详情   |    关键词分类   |
+| ![主页](screenshots/01-home.png) | ![宠物列表](screenshots/02-pet-list.png) |
+| **宠物详情** | **关键词分类** |
+| ![宠物详情](screenshots/21-pet-detail.png) | ![关键词分类](screenshots/03-category-filter.png) |
 | **关键词搜索** | **明暗主题切换** |
-|   关键词搜索   |   明暗主题切换   |
+| ![关键词搜索](screenshots/04-search.png) | ![明暗主题切换](screenshots/13-theme.png) |
 
 **前台 · 内容资讯**
 
 |   领养须知   | 领养小常识 |
 | :------: | :---: |
-|   领养须知   | 领养小常识 |
+| ![领养须知](screenshots/05-adoption-guide.png) | ![领养小常识](screenshots/06-tips.png) |
 | **领养故事** |       |
-|   领养故事   |       |
+| ![领养故事](screenshots/28-adoption-stories.png) | |
 
 **前台 · 注册登录**
 
 |       登录页       |    注册页    |
 | :-------------: | :-------: |
-|       登录页       |    注册页    |
-| **Redis 图形验证码** |  **个人中心** |
-|   Redis 图形验证码   |    个人中心   |
-|    **普通用户菜单**   | **管理员菜单** |
-|      普通用户菜单     |   管理员菜单   |
+| ![登录页](screenshots/07-login.png) | ![注册页](screenshots/08-register.png) |
+| **Redis 图形验证码** | **个人中心** |
+| ![Redis 图形验证码](screenshots/09-captcha.png) | ![个人中心](screenshots/12-profile.png) |
+| **普通用户菜单** | **管理员菜单** |
+| ![普通用户菜单](screenshots/10-user-menu.png) | ![管理员菜单](screenshots/11-admin-menu.png) |
 
 **前台 · 互动与消息**
 
 |   发表评论   |   收藏宠物   |
 | :------: | :------: |
-|   发表评论   |   收藏宠物   |
+| ![发表评论](screenshots/22-comment.png) | ![收藏宠物](screenshots/23-favorite.png) |
 | **我的收藏** | **消息中心** |
-|   我的收藏   |   消息中心   |
+| ![我的收藏](screenshots/27-my-favorites.png) | ![消息中心](screenshots/25-message-center.png) |
 | **申请消息** | **我的消息** |
-|   申请消息   |   我的消息   |
+| ![申请消息](screenshots/26-application-notice.png) | ![我的消息](screenshots/29-my-messages.png) |
 
 **后台 · 管理端**
 
 |     数据可视化仪表盘     |     宠物管理    |
 | :--------------: | :---------: |
-|     数据可视化仪表盘     |     宠物管理    |
-|    **宠物分类管理**    |   **领养管理**  |
-|      宠物分类管理      |     领养管理    |
-|    **领养记录管理**    |  **领养申请审核** |
-|      领养记录管理      |    领养申请审核   |
+| ![数据可视化仪表盘](screenshots/14-admin-dashboard.png) | ![宠物管理](screenshots/15-admin-pets.png) |
+| **宠物分类管理** | **领养管理** |
+| ![宠物分类管理](screenshots/16-admin-categories.png) | ![领养管理](screenshots/17-admin-adoptions.png) |
+| **领养记录管理** | **领养申请审核** |
+| ![领养记录管理](screenshots/18-admin-records.png) | ![领养申请审核](screenshots/24-admin-approval.png) |
 | **领养须知编辑器（多章节）** | **收容所信息管理** |
-|      领养须知编辑器     |   收容所信息管理   |
+| ![领养须知编辑器](screenshots/19-guide-manage.png) | ![收容所信息管理](screenshots/20-admin-shelter.png) |
 
 </details>
 
@@ -942,7 +949,7 @@ adoption_story   (领养故事)
 
 首次会自动生成 `.env`（数据库密码、Redis 密码、JWT 密钥都是随机的），
   
-然后构建镜像 → 起容器 → 等前端就绪 → 打印访问地址。
+然后构建镜像 → 起容器 → 等前端就绪 → 自动打开浏览器。
 
 | 场景       | 命令                                 |
 | -------- | ---------------------------------- |
