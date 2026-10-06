@@ -363,12 +363,14 @@ Claw-Pet/
 │           └── admin/                     # 后台管理（10 个页面）
 │
 ├── scripts/                               # ⭐ 启动与部署脚本（详见 scripts/README.txt）
+│   ├── quick-start.ps1                    #    一键引导：检查 Docker/WSL2/网络 → 自动修复 → 部署
 │   ├── start.ps1 / start.sh               #    本地开发：读 .env → 起 MySQL/Redis → 起前后端
 │   ├── stop.sh                            #    本地开发：停掉前后端（macOS / Linux）
 │   └── deploy.ps1 / deploy.sh             #    容器部署：构建镜像 + 起 4 个容器
 │
 ├── start.bat                              # ⭐ Windows 双击：本地开发一键启动（转调 scripts/start.ps1）
 ├── deploy.bat                             # ⭐ Windows 双击：容器一键部署（转调 scripts/deploy.ps1）
+├── quick-start.bat                        # ⭐ Windows 双击：零基础一键引导（检查环境 → 引导安装 → 部署）
 ├── docker-compose.yml                     # ⭐ 4 容器编排（mysql / redis / backend / frontend）
 ├── .env.example                           # 环境变量模板
 ├── .dockerignore
@@ -741,6 +743,10 @@ adoption_story   (领养故事)
 ---
 
 ### 方式 A：容器部署（最省事，只要 Docker）
+
+> 🪟 **Windows 新手直接双击根目录的 `quick-start.bat`** —— 脚本会自动检查 Docker /
+> WSL2 / 引擎状态，没装的手把手引导安装，国内网络还会自动配置镜像加速，
+> 部署完自动打开浏览器。下面手动命令适合已经熟悉命令行的用户。
 
 整套环境（MySQL + Redis + 后端 + 前端）打包成 4 个容器，一条命令全起。
 **本机不用装 JDK / Maven / Node / MySQL / Redis。**
@@ -1191,6 +1197,29 @@ Redis 起不来也不影响浏览、领养、评论，只是登录验证码这�
 >
 > 重置只会重建数据库记录，不会动 `upload/pet/` 里的图片文件 —— 演示图片是 `demo-*.jpg`，
 > 不受影响，重置后照样能显示。
+</details>
+
+<details>
+<summary><b>Q: 部署时拉镜像报 <code>failed to fetch oauth token ... Bad Gateway</code> / 一直卡住？</b></summary>
+
+国内网络访问 Docker Hub 不稳定导致的。给 Docker 配一个镜像加速即可：
+
+**Windows（Docker Desktop）**：设置 → Docker Engine，在 JSON 里加一段后点 Apply & Restart：
+
+```json
+{
+  "registry-mirrors": [
+    "https://docker.1ms.run",
+    "https://docker.m.daocloud.io",
+    "https://dockerproxy.net"
+  ]
+}
+```
+
+**Linux**：编辑 `/etc/docker/daemon.json` 加入同样的 `registry-mirrors` 字段，然后
+`sudo systemctl restart docker`。
+
+> Windows 用户可以直接双击 `quick-start.bat`，脚本检测到连不上 Docker Hub 会自动帮你配好。
 </details>
 
 ---

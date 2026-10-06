@@ -14,6 +14,11 @@ scripts/ — 启动与部署脚本
 
 容器部署（本机只要装 Docker）
 ------------------------------
+  quick-start.ps1  Windows  一键引导（推荐新手）：检查 Docker / WSL2 / 引擎 /
+                            国内镜像加速 → 自动修复 → 调 deploy.ps1 → 开浏览器。
+                            根目录入口是 quick-start.bat。
+                            参数：-NoBrowser 不开浏览器 / -Yes 警告自动继续 /
+                                  -SkipWsl 跳过 WSL2 检查（Hyper-V 后端用户）
   deploy.ps1   Windows      构建镜像 → 起 4 个容器 → 等前端就绪 → 打印访问地址
   deploy.sh    macOS/Linux  同上
 
