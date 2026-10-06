@@ -33,6 +33,10 @@ services:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:?请先在 .env 里设置 DB_PASSWORD（数据库 root 密码）}
       MYSQL_DATABASE: ${DB_NAME:-claw_pet}
       TZ: Asia/Shanghai
+      # mysql 客户端默认 --default-character-set=auto，没有 locale 时会回退到 latin1，
+      # 导致初始化脚本里的中文被双重编码。给个 locale 让它认得 UTF-8
+      # （真正的兜底是 demo-data/sql/*.sql 顶部的 SET NAMES utf8mb4，两道保险）
+      LANG: C.UTF-8
     command:
       - --character-set-server=utf8mb4
       - --collation-server=utf8mb4_0900_ai_ci
@@ -90,7 +94,11 @@ services:
     restart: unless-stopped
     environment:
       DB_URL: "jdbc:mysql://mysql:3306/${DB_NAME:-claw_pet}?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true"
-      DB_USERNAME: ${DB_USERNAME:-root}
+      # 容器里的 MySQL 只创建了 root 一个账号（口令 = MYSQL_ROOT_PASSWORD），
+      # 所以后端固定用 root 连接。这里不要再读 ${DB_USERNAME} ——
+      # .env 里那个是给「本机 MySQL」用的（比如 claw），套到容器上会直接
+      # Access denied for user 'claw'@'xxx'。
+      DB_USERNAME: root
       DB_PASSWORD: ${DB_PASSWORD:?请先在 .env 里设置 DB_PASSWORD}
       REDIS_HOST: redis
       REDIS_PORT: "6379"

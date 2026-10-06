@@ -2,6 +2,10 @@
 -- Claw Pet 宠物领养系统 - 演示数据
 -- ========================================
 
+-- ⚠️ 别删这一行：容器初始化时声明客户端字符集，避免中文被双重编码。
+-- （官方 mysql 镜像的默认 character-set=auto 在无 locale 的容器里会回退到 latin1）
+SET NAMES utf8mb4;
+
 -- 宠物分类
 INSERT INTO pet_category (id, name) VALUES
 (1, '猫咪'),

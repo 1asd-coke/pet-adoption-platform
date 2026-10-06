@@ -3,6 +3,13 @@
 -- 生成时间: 2026-07-19
 -- ========================================
 
+-- ⚠️ 别删这一行：它是容器部署中文不乱码的关键。
+-- 官方 mysql:8.0 镜像在初始化时执行 /docker-entrypoint-initdb.d/*.sql，
+-- 客户端默认 --default-character-set=auto，容器内没有 locale 会回退成 latin1，
+-- 于是本文件里的 UTF-8 中文被当成 latin1 双重编码（宠物名会变乱码）。
+-- 显式声明一次，Navicat / 命令行手动导入也同样安全。
+SET NAMES utf8mb4;
+
 CREATE TABLE `pet_category` (
   `id` bigint NOT NULL AUTO_INCREMENT COMMENT '分类ID',
   `name` varchar(50) NOT NULL COMMENT '分类名称',
