@@ -113,9 +113,11 @@
 | **领养须知编辑器（多章节）** | **收容所信息管理** |
 | ![领养须知编辑器](screenshots/19-guide-manage.png) | ![收容所信息管理](screenshots/20-admin-shelter.png) |
 
-### 🎬 功能演示视频
+### 🎬 功能演示动图
 
-以下 **21 段**均为真实操作录屏（Playwright 驱动真实浏览器），覆盖从前台浏览到后台审核的完整业务闭环。
+以下 **21 段**均为真实操作录屏（Playwright 驱动真实浏览器，自动循环播放），覆盖从前台浏览到后台审核的完整业务闭环。
+
+> 想看**高清原画质**版本？同目录下 `screenshots/clips/` 存放着对应的 MP4（1280×800）。
 
 #### 账号体系（登录 / 注册 / 找回 / 主题）
 
@@ -125,16 +127,16 @@
   <th>② 注册（含密保问题设置）</th>
 </tr>
 <tr>
-  <td><video src="screenshots/clips/01-login.mp4" controls muted preload="metadata" width="100%"></video></td>
-  <td><video src="screenshots/clips/02-register.mp4" controls muted preload="metadata" width="100%"></video></td>
+  <td><img src="screenshots/gifs/01-login.gif" alt="01-login" width="100%" /></td>
+  <td><img src="screenshots/gifs/02-register.gif" alt="02-register" width="100%" /></td>
 </tr>
 <tr>
   <th>③ 找回密码（验证 → 密保 → 重置）</th>
   <th>④ 主题一键切换（10 套配色）</th>
 </tr>
 <tr>
-  <td><video src="screenshots/clips/03-forgot-password.mp4" controls muted preload="metadata" width="100%"></video></td>
-  <td><video src="screenshots/clips/04-theme-switch.mp4" controls muted preload="metadata" width="100%"></video></td>
+  <td><img src="screenshots/gifs/03-forgot-password.gif" alt="03-forgot-password" width="100%" /></td>
+  <td><img src="screenshots/gifs/04-theme-switch.gif" alt="04-theme-switch" width="100%" /></td>
 </tr>
 </table>
 
@@ -146,24 +148,24 @@
   <th>⑥ 宠物列表（分类筛选 + 关键词搜索）</th>
 </tr>
 <tr>
-  <td><video src="screenshots/clips/07-home.mp4" controls muted preload="metadata" width="100%"></video></td>
-  <td><video src="screenshots/clips/08-pet-list.mp4" controls muted preload="metadata" width="100%"></video></td>
+  <td><img src="screenshots/gifs/07-home.gif" alt="07-home" width="100%" /></td>
+  <td><img src="screenshots/gifs/08-pet-list.gif" alt="08-pet-list" width="100%" /></td>
 </tr>
 <tr>
   <th>⑦ 宠物详情（图片轮播 + 收藏切换）</th>
   <th>⑧ 发表评论与回复</th>
 </tr>
 <tr>
-  <td><video src="screenshots/clips/09-pet-detail.mp4" controls muted preload="metadata" width="100%"></video></td>
-  <td><video src="screenshots/clips/10-comment.mp4" controls muted preload="metadata" width="100%"></video></td>
+  <td><img src="screenshots/gifs/09-pet-detail.gif" alt="09-pet-detail" width="100%" /></td>
+  <td><img src="screenshots/gifs/10-comment.gif" alt="10-comment" width="100%" /></td>
 </tr>
 <tr>
   <th>⑨ 发布领养故事（富文本编辑器）</th>
   <th>⑩ 消息中心（我的 / 回复 / 通知）</th>
 </tr>
 <tr>
-  <td><video src="screenshots/clips/11-story.mp4" controls muted preload="metadata" width="100%"></video></td>
-  <td><video src="screenshots/clips/17-message-center.mp4" controls muted preload="metadata" width="100%"></video></td>
+  <td><img src="screenshots/gifs/11-story.gif" alt="11-story" width="100%" /></td>
+  <td><img src="screenshots/gifs/17-message-center.gif" alt="17-message-center" width="100%" /></td>
 </tr>
 </table>
 
@@ -175,23 +177,23 @@
   <th>⑫ 我的申请（进度追踪 + 取消申请）</th>
 </tr>
 <tr>
-  <td><video src="screenshots/clips/12-adoption-apply.mp4" controls muted preload="metadata" width="100%"></video></td>
-  <td><video src="screenshots/clips/15-my-applications.mp4" controls muted preload="metadata" width="100%"></video></td>
+  <td><img src="screenshots/gifs/12-adoption-apply.gif" alt="12-adoption-apply" width="100%" /></td>
+  <td><img src="screenshots/gifs/15-my-applications.gif" alt="15-my-applications" width="100%" /></td>
 </tr>
 <tr>
   <th>⑬ 管理员实时收到新申请（WebSocket 推送）</th>
   <th>⑭ 审核通过（状态机流转 + 宠物置为已领养）</th>
 </tr>
 <tr>
-  <td><video src="screenshots/clips/13-realtime-admin.mp4" controls muted preload="metadata" width="100%"></video></td>
-  <td><video src="screenshots/clips/14-review-approve.mp4" controls muted preload="metadata" width="100%"></video></td>
+  <td><img src="screenshots/gifs/13-realtime-admin.gif" alt="13-realtime-admin" width="100%" /></td>
+  <td><img src="screenshots/gifs/14-review-approve.gif" alt="14-review-approve" width="100%" /></td>
 </tr>
 <tr>
   <th>⑮ 用户实时收到审核结果（WebSocket 推送）</th>
   <th></th>
 </tr>
 <tr>
-  <td><video src="screenshots/clips/16-realtime-user.mp4" controls muted preload="metadata" width="100%"></video></td>
+  <td><img src="screenshots/gifs/16-realtime-user.gif" alt="16-realtime-user" width="100%" /></td>
   <td></td>
 </tr>
 </table>
@@ -206,24 +208,24 @@
   <th>⑰ 分类管理（新增 / 拖拽排序 / 删除）</th>
 </tr>
 <tr>
-  <td><video src="screenshots/clips/05-admin-dashboard.mp4" controls muted preload="metadata" width="100%"></video></td>
-  <td><video src="screenshots/clips/06-admin-category.mp4" controls muted preload="metadata" width="100%"></video></td>
+  <td><img src="screenshots/gifs/05-admin-dashboard.gif" alt="05-admin-dashboard" width="100%" /></td>
+  <td><img src="screenshots/gifs/06-admin-category.gif" alt="06-admin-category" width="100%" /></td>
 </tr>
 <tr>
   <th>⑱ 新增宠物（表单 + 分类选择）</th>
   <th>⑲ 领养记录与回访登记</th>
 </tr>
 <tr>
-  <td><video src="screenshots/clips/18-admin-pet-add.mp4" controls muted preload="metadata" width="100%"></video></td>
-  <td><video src="screenshots/clips/19-admin-record.mp4" controls muted preload="metadata" width="100%"></video></td>
+  <td><img src="screenshots/gifs/18-admin-pet-add.gif" alt="18-admin-pet-add" width="100%" /></td>
+  <td><img src="screenshots/gifs/19-admin-record.gif" alt="19-admin-record" width="100%" /></td>
 </tr>
 <tr>
   <th>⑳ 用户管理</th>
   <th>㉑ 内容管理（须知 / 常识 / 收容所）</th>
 </tr>
 <tr>
-  <td><video src="screenshots/clips/20-admin-user.mp4" controls muted preload="metadata" width="100%"></video></td>
-  <td><video src="screenshots/clips/21-admin-content.mp4" controls muted preload="metadata" width="100%"></video></td>
+  <td><img src="screenshots/gifs/20-admin-user.gif" alt="20-admin-user" width="100%" /></td>
+  <td><img src="screenshots/gifs/21-admin-content.gif" alt="21-admin-content" width="100%" /></td>
 </tr>
 </table>
 
