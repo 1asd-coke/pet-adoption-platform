@@ -59,6 +59,62 @@
 
 ---
 
+## 📸 页面展示
+
+> 共 29 张实机截图，原图在 [`screenshots/`](./screenshots) 目录
+
+**前台 · 浏览与发现**
+
+| 主页 | 宠物列表 |
+|:---:|:---:|
+| ![主页](screenshots/01-home.png) | ![宠物列表](screenshots/02-pet-list.png) |
+| **宠物详情** | **关键词分类** |
+| ![宠物详情](screenshots/21-pet-detail.png) | ![关键词分类](screenshots/03-category-filter.png) |
+| **关键词搜索** | **明暗主题切换** |
+| ![关键词搜索](screenshots/04-search.png) | ![明暗主题切换](screenshots/13-theme.png) |
+
+**前台 · 内容资讯**
+
+| 领养须知 | 领养小常识 |
+|:---:|:---:|
+| ![领养须知](screenshots/05-adoption-guide.png) | ![领养小常识](screenshots/06-tips.png) |
+| **领养故事** | |
+| ![领养故事](screenshots/28-adoption-stories.png) | |
+
+**前台 · 注册登录**
+
+| 登录页 | 注册页 |
+|:---:|:---:|
+| ![登录页](screenshots/07-login.png) | ![注册页](screenshots/08-register.png) |
+| **Redis 图形验证码** | **个人中心** |
+| ![Redis 图形验证码](screenshots/09-captcha.png) | ![个人中心](screenshots/12-profile.png) |
+| **普通用户菜单** | **管理员菜单** |
+| ![普通用户菜单](screenshots/10-user-menu.png) | ![管理员菜单](screenshots/11-admin-menu.png) |
+
+**前台 · 互动与消息**
+
+| 发表评论 | 收藏宠物 |
+|:---:|:---:|
+| ![发表评论](screenshots/22-comment.png) | ![收藏宠物](screenshots/23-favorite.png) |
+| **我的收藏** | **消息中心** |
+| ![我的收藏](screenshots/27-my-favorites.png) | ![消息中心](screenshots/25-message-center.png) |
+| **申请消息** | **我的消息** |
+| ![申请消息](screenshots/26-application-notice.png) | ![我的消息](screenshots/29-my-messages.png) |
+
+**后台 · 管理端**
+
+| 数据可视化仪表盘 | 宠物管理 |
+|:---:|:---:|
+| ![数据可视化仪表盘](screenshots/14-admin-dashboard.png) | ![宠物管理](screenshots/15-admin-pets.png) |
+| **宠物分类管理** | **领养管理** |
+| ![宠物分类管理](screenshots/16-admin-categories.png) | ![领养管理](screenshots/17-admin-adoptions.png) |
+| **领养记录管理** | **领养申请审核** |
+| ![领养记录管理](screenshots/18-admin-records.png) | ![领养申请审核](screenshots/24-admin-approval.png) |
+| **领养须知编辑器（多章节）** | **收容所信息管理** |
+| ![领养须知编辑器](screenshots/19-guide-manage.png) | ![收容所信息管理](screenshots/20-admin-shelter.png) |
+
+---
+
 ## 📁 项目结构
 
 ```
@@ -1089,6 +1145,6 @@ Redis 起不来也不影响浏览、领养、评论，只是登录验证码这�
 
 **Claw Pet** — 用爱给流浪动物一个温暖的家 🐱🐶
 
-Made with ❤️ by [贾敬涛](https://gitee.com/jia-jingtao1)
+Made with ❤️ by [贾敬涛](https://github.com/1asd-coke) · [Gitee](https://gitee.com/jia-jingtao1) / [GitHub](https://github.com/1asd-coke)
 
 </div>

@@ -67,3 +67,6 @@ Thumbs.db
 # docs/ 是给 Gitee Pages 发布用的打包结果（历史上进过 88 个文件 / 11.58 MB）。
 # 它是生成物、能随时重建，不入库；Gitee Pages 需要的话改为在线构建。
 docs/
+
+# 页面展示原始截图（已重命名整理进 screenshots/，原始目录不入库）
+页面展示/
