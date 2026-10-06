@@ -28,10 +28,16 @@ public class AdoptionGuideServiceImpl implements AdoptionGuideService {
 
     @Override
     public void update(AdoptionGuide guide) {
-        if (guideMapper.selectById(guide.getId()) == null) {
+        if (guide.getId() == null || guideMapper.selectById(guide.getId()) == null) {
+            guide.setId(null);
             guideMapper.insert(guide);
         } else {
             guideMapper.updateById(guide);
         }
+    }
+
+    @Override
+    public void delete(Long id) {
+        guideMapper.deleteById(id);
     }
 }

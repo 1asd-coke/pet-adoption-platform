@@ -27,11 +27,19 @@ public class AdoptionGuideController {
         return Result.success(guideService.list());
     }
 
-    /** 更新领养须知（管理员） */
+    /** 新增/更新某一章节（管理员，id 为空时新增） */
     @PutMapping
     @PreAuthorize("hasRole('ADMIN')")
     public Result<Void> update(@RequestBody AdoptionGuide guide) {
         guideService.update(guide);
         return Result.success("更新成功", null);
+    }
+
+    /** 删除某一章节（管理员） */
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public Result<Void> delete(@PathVariable Long id) {
+        guideService.delete(id);
+        return Result.success("删除成功", null);
     }
 }
