@@ -6,17 +6,12 @@
 
 *用爱给流浪动物一个温暖的家*
 
-![Java](https://img.shields.io/badge/Java-17-blue?style=flat-square\&logo=openjdk)
-
-![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2-brightgreen?style=flat-square\&logo=springboot)
-
-![Vue](https://img.shields.io/badge/Vue-3.4-4FC08D?style=flat-square\&logo=vuedotjs)
-
-![MySQL](https://img.shields.io/badge/MySQL-8.0-orange?style=flat-square\&logo=mysql)
-
-![Redis](https://img.shields.io/badge/Redis-7.4-red?style=flat-square\&logo=redis)
-
-![License](https://img.shields.io/badge/License-MIT-lightgrey?style=flat-square)
+[![Java](https://img.shields.io/badge/Java-17-blue?style=flat-square\&logo=openjdk)](https://www.oracle.com/java/)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2-brightgreen?style=flat-square\&logo=springboot)](https://spring.io/projects/springboot)
+[![Vue](https://img.shields.io/badge/Vue-3.4-4FC08D?style=flat-square\&logo=vuedotjs)](https://cn.vuejs.org/)
+[![MySQL](https://img.shields.io/badge/MySQL-8.0-orange?style=flat-square\&logo=mysql)](https://www.mysql.com/)
+[![Redis](https://img.shields.io/badge/Redis-7.4-red?style=flat-square\&logo=redis)](https://redis.io/)
+[![License](https://img.shields.io/badge/License-MIT-lightgrey?style=flat-square)](./LICENSE)
 
 </div>
 
