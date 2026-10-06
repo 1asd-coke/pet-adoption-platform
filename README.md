@@ -67,24 +67,27 @@
 <table>
 <tr>
   <th>① 用户 · 提交领养申请（资料自动带入）</th>
-  <th>② 管理员 · 后台实时弹待审提醒</th>
+  <th>② 管理侧 · 消息通知实时收到待审提醒</th>
 </tr>
 <tr>
   <td><img src="screenshots/gifs/16-adoption-apply.gif" alt="用户提交领养申请" width="100%" /></td>
-  <td><img src="screenshots/gifs/18-realtime-admin.gif" alt="管理员实时收到待审提醒" width="100%" /></td>
+  <td><img src="screenshots/gifs/13-message-tabs.gif" alt="消息中心收到待审通知" width="100%" /></td>
 </tr>
 <tr>
-  <th>③ 管理员 · 审核通过（生成领养记录）</th>
-  <th>④ 用户 · 实时收到审核结果</th>
+  <th>③ 管理侧 · 审核通过（生成领养记录）</th>
+  <th>④ 用户 · 我的申请（状态实时更新）</th>
 </tr>
 <tr>
   <td><img src="screenshots/gifs/19-review-approve.gif" alt="管理员审核通过" width="100%" /></td>
-  <td><img src="screenshots/gifs/20-realtime-user.gif" alt="用户实时收到审核结果" width="100%" /></td>
+  <td><img src="screenshots/gifs/17-my-applications.gif" alt="我的申请状态已更新" width="100%" /></td>
 </tr>
 </table>
 
-> 一份申请，四段实拍 —— 提交、提醒、审核、回执全程 **WebSocket 实时推送**，用户和管理员两边都不用刷新页面。
+> 一份申请，四段实拍 —— 提交、通知、审核、回执全程 **WebSocket 实时推送**，用户和管理员两边都不用刷新页面。
 > 后台还有数据可视化仪表盘（ECharts 趋势 + 分类占比 + 待审统计），完整 27 段演示在下方折叠区 👇
+>
+> 📌 上面四段合计约 4.7 MB（刻意挑的小体积片段，秒开）；想看「通知弹窗 + 审核回执」的完整长录屏，
+> 折叠区里有 `18-realtime-admin` / `20-realtime-user` 两段高清版。
 
 ---
 
