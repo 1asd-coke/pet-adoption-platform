@@ -19,7 +19,8 @@ scripts/ — 启动与部署脚本
                             根目录入口是 quick-start.bat。
                             参数：-NoBrowser 不开浏览器 / -Yes 警告自动继续 /
                                   -SkipWsl 跳过 WSL2 检查（Hyper-V 后端用户）
-  deploy.ps1   Windows      构建镜像 → 起 4 个容器 → 等前端就绪 → 打印访问地址
+  deploy.ps1   Windows      构建镜像 → 起 4 个容器 → 等前端就绪 → 打开浏览器 → 打印访问地址
+                            （-NoBrowser 可关闭自动开浏览器）
   deploy.sh    macOS/Linux  同上
 
   两者都支持子命令：up / down / restart / ps / logs / clean / rebuild / pull，

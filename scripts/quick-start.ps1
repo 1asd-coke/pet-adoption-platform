@@ -293,22 +293,17 @@ if ($busyByForeign.Count -gt 0) {
 # ==========================================================
 # [7/7] 部署
 # ==========================================================
-Write-Step '[7/7] 开始部署（复用 scripts\deploy.ps1）'
-& powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $Root 'scripts\deploy.ps1') up
+Write-Step '[7/7] 开始部署（复用 scripts\deploy.ps1，成功后它会自动打开浏览器）'
+$deployArgs = @('up')
+if ($NoBrowser) { $deployArgs += '-NoBrowser' }
+& powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $Root 'scripts\deploy.ps1') @deployArgs
 if ($LASTEXITCODE -ne 0) {
     Write-Err '部署失败。排查指引：'
     Write-Info '  看后端日志   .\scripts\deploy.ps1 logs backend'
     Write-Info '  看容器状态   .\scripts\deploy.ps1 ps'
     exit 1
 }
-
-$site = "http://localhost:$webPort/"
-if ($NoBrowser) {
-    Write-Ok "部署完成：$site"
-} else {
-    Start-Process $site
-    Write-Ok "部署完成，已在浏览器打开 $site"
-}
+Write-Ok "部署完成：http://localhost:$webPort/"
 Write-Host ''
 Write-Host '  演示账号   admin / admin123   user / admin123'
 Write-Host '  常用命令   .\scripts\deploy.ps1 ps | logs backend | down'

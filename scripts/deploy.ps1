@@ -26,7 +26,10 @@ param(
     [string]$Action = 'up',
 
     [Parameter(Position = 1, ValueFromRemainingArguments = $true)]
-    [string[]]$Rest
+    [string[]]$Rest,
+
+    # 部署成功后不自动打开浏览器（脚本/自动化场景用）
+    [switch]$NoBrowser
 )
 
 $ErrorActionPreference = 'Stop'
@@ -176,6 +179,13 @@ function Wait-Frontend {
             $resp = Invoke-WebRequest -Uri $url -UseBasicParsing -TimeoutSec 3
             if ($resp.StatusCode -ge 200 -and $resp.StatusCode -lt 400) {
                 Write-Ok '前端已就绪'
+                # 部署成功后自动打开浏览器（-NoBrowser 可关闭）
+                if (-not $NoBrowser) {
+                    try {
+                        Start-Process $url
+                        Write-Ok "已自动在浏览器打开 $url"
+                    } catch { }
+                }
                 return $true
             }
         }
