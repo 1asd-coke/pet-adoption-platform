@@ -115,11 +115,11 @@
 
 ### 🎬 功能演示动图
 
-以下 **23 段**均为真实操作录屏（Playwright 驱动真实浏览器，自动循环播放），覆盖从前台浏览到后台审核的完整业务闭环。
+以下 **27 段**均为真实操作录屏（Playwright 驱动真实浏览器，1600×1000 拍摄，自动循环播放），覆盖从前台浏览到后台审核的完整业务闭环。
 
-> 想看**高清原画质**版本？同目录下 `screenshots/clips/` 存放着对应的 MP4（1280×800）。
+> 想看**更高清原画质**？同目录下 `screenshots/clips/` 存放着对应的 MP4（1600×1000，H.264 crf20）。
 
-#### 账号体系（登录 / 注册 / 找回/ 主题）
+#### A. 账号体系
 
 <table>
 <tr>
@@ -127,133 +127,168 @@
   <th>② 登录（Redis 算术验证码）</th>
 </tr>
 <tr>
-  <td><img src="screenshots/gifs/01-auth-switch.gif" alt="01-auth-switch" width="100%" /></td>
-  <td><img src="screenshots/gifs/01-login.gif" alt="01-login" width="100%" /></td>
+  <td><img src="screenshots/gifs/01-auth-switch.gif" alt="登录注册滑动切换" width="100%" /></td>
+  <td><img src="screenshots/gifs/02-login.gif" alt="登录流程" width="100%" /></td>
 </tr>
 <tr>
-  <th>③ 注册（含密保问题设置）</th>
+  <th>③ 注册（可设置密保问题）</th>
   <th>④ 找回密码（验证 → 密保 → 重置）</th>
 </tr>
 <tr>
-  <td><img src="screenshots/gifs/02-register.gif" alt="02-register" width="100%" /></td>
-  <td><img src="screenshots/gifs/03-forgot-password.gif" alt="03-forgot-password" width="100%" /></td>
+  <td><img src="screenshots/gifs/03-register.gif" alt="注册流程" width="100%" /></td>
+  <td><img src="screenshots/gifs/04-forgot-password.gif" alt="找回密码" width="100%" /></td>
 </tr>
 <tr>
   <th>⑤ 主题一键切换（10 套配色）</th>
   <th></th>
 </tr>
 <tr>
-  <td><img src="screenshots/gifs/04-theme-switch.gif" alt="04-theme-switch" width="100%" /></td>
+  <td><img src="screenshots/gifs/05-theme-switch.gif" alt="主题切换" width="100%" /></td>
   <td></td>
 </tr>
 </table>
 
-#### 前台浏览与互动
+#### B. 前台浏览
 
 <table>
 <tr>
-  <th>⑥ 首页（Banner 轮播 + 实时统计）</th>
+  <th>⑥ 首页（动态光晕 + 实时统计）</th>
   <th>⑦ 宠物列表（分类筛选 + 关键词搜索）</th>
 </tr>
 <tr>
-  <td><img src="screenshots/gifs/07-home.gif" alt="07-home" width="100%" /></td>
-  <td><img src="screenshots/gifs/08-pet-list.gif" alt="08-pet-list" width="100%" /></td>
+  <td><img src="screenshots/gifs/06-home.gif" alt="首页" width="100%" /></td>
+  <td><img src="screenshots/gifs/07-pet-list.gif" alt="宠物列表筛选" width="100%" /></td>
 </tr>
 <tr>
   <th>⑧ 宠物详情（图片轮播 + 收藏切换）</th>
-  <th>⑨ 发表评论与回复</th>
+  <th>⑨ 领养须知（多章节折叠）</th>
 </tr>
 <tr>
-  <td><img src="screenshots/gifs/09-pet-detail.gif" alt="09-pet-detail" width="100%" /></td>
-  <td><img src="screenshots/gifs/10-comment.gif" alt="10-comment" width="100%" /></td>
+  <td><img src="screenshots/gifs/08-pet-detail.gif" alt="宠物详情" width="100%" /></td>
+  <td><img src="screenshots/gifs/09-guide.gif" alt="领养须知" width="100%" /></td>
 </tr>
 <tr>
-  <th>⑩ 发布领养故事（富文本编辑器）</th>
-  <th>⑪ 消息中心（系统通知 / 我的评论 / 被回复）</th>
-</tr>
-<tr>
-  <td><img src="screenshots/gifs/11-story.gif" alt="11-story" width="100%" /></td>
-  <td><img src="screenshots/gifs/17-message-tabs.gif" alt="17-message-tabs" width="100%" /></td>
-</tr>
-</table>
-
-#### ⚡ 评论回复实时通知（WebSocket）
-
-<table>
-<tr>
-  <th>⑫ 用户发评论 → 管理员回复 → 铃铛实时亮起</th>
+  <th>⑩ 领养小常识（分类 → 详情）</th>
   <th></th>
 </tr>
 <tr>
-  <td><img src="screenshots/gifs/11-comment-reply-notify.gif" alt="11-comment-reply-notify" width="100%" /></td>
+  <td><img src="screenshots/gifs/10-tip.gif" alt="领养小常识" width="100%" /></td>
   <td></td>
 </tr>
 </table>
 
-> 业务规则：只有**回复**（`parentId > 0`）才会给对方建 `COMMENT_REPLY` 通知，普通评论不打扰；且**不通知自己**。
-> 上图中用户正在看宠物详情页，管理员的回复一提交，铃铛徽标从 0 立刻跳到 1，下拉里就是刚收到的那条。
-
-#### 🔥 领养业务闭环（本项目核心）
+#### C. 互动与消息
 
 <table>
 <tr>
-  <th>⑬ 提交领养申请（校验手机 / 地址 / 理由）</th>
-  <th>⑭ 我的申请（进度追踪 + 取消申请）</th>
+  <th>⑪ 发表评论与回复</th>
+  <th>⑫ 消息中心（系统通知 / 我的评论 / 被回复）</th>
 </tr>
 <tr>
-  <td><img src="screenshots/gifs/12-adoption-apply.gif" alt="12-adoption-apply" width="100%" /></td>
-  <td><img src="screenshots/gifs/15-my-applications.gif" alt="15-my-applications" width="100%" /></td>
+  <td><img src="screenshots/gifs/11-comment.gif" alt="评论与回复" width="100%" /></td>
+  <td><img src="screenshots/gifs/13-message-tabs.gif" alt="消息中心三Tab" width="100%" /></td>
 </tr>
 <tr>
-  <th>⑮ 管理员实时收到新申请（WebSocket 推送）</th>
-  <th>⑯ 审核通过（状态机流转 + 宠物置为已领养）</th>
+  <th>⑬ 我的收藏（取消收藏 → 空状态）</th>
+  <th>⑭ 发布领养故事（富文本编辑器）</th>
 </tr>
 <tr>
-  <td><img src="screenshots/gifs/13-realtime-admin.gif" alt="13-realtime-admin" width="100%" /></td>
-  <td><img src="screenshots/gifs/14-review-approve.gif" alt="14-review-approve" width="100%" /></td>
+  <td><img src="screenshots/gifs/14-favorite.gif" alt="收藏夹" width="100%" /></td>
+  <td><img src="screenshots/gifs/15-story.gif" alt="发布领养故事" width="100%" /></td>
+</tr>
+</table>
+
+#### ⚡ D. 实时通知（WebSocket）
+
+<table>
+<tr>
+  <th>⑮ 用户发评论 → 管理员回复 → 铃铛实时亮起</th>
+  <th>⑯ 管理员端收到新领养申请</th>
 </tr>
 <tr>
-  <th>⑰ 用户实时收到审核结果（WebSocket 推送）</th>
+  <td><img src="screenshots/gifs/12-comment-reply-notify.gif" alt="评论回复实时通知" width="100%" /></td>
+  <td><img src="screenshots/gifs/18-realtime-admin.gif" alt="管理员实时收申请" width="100%" /></td>
+</tr>
+<tr>
+  <th>⑰ 用户端实时收到审核结果</th>
   <th></th>
 </tr>
 <tr>
-  <td><img src="screenshots/gifs/16-realtime-user.gif" alt="16-realtime-user" width="100%" /></td>
+  <td><img src="screenshots/gifs/20-realtime-user.gif" alt="用户实时收审核结果" width="100%" /></td>
   <td></td>
 </tr>
 </table>
 
-> ⑮ → ⑯ → ⑰ 是**同一条申请**的完整时序：申请提交后管理员端铃铛实时亮起，审核通过后用户端立刻收到通知，全程无需刷新页面。
+> **业务规则**（`CommentServiceImpl.add()`）：只有**回复**（`parentId > 0`）才会给对方建`COMMENT_REPLY` 通知，顶级评论不打扰任何人，且**不通知自己**。
+> ⑮ 中用户正停留在宠物详情页，管理员的回复一提交，铃铛徽标立刻从空跳到 1，下拉里就是刚收到的那条。
 
-#### 后台管理
+#### E. 领养业务闭环
 
 <table>
 <tr>
-  <th>⑱ 数据仪表盘（ECharts 趋势 + 分类占比）</th>
-  <th>⑲ 分类管理（新增 / 拖拽排序 / 删除）</th>
+  <th>⑱ 提交领养申请（自动带入个人中心资料）</th>
+  <th>⑲ 我的申请（进度追踪 + 取消）</th>
 </tr>
 <tr>
-  <td><img src="screenshots/gifs/05-admin-dashboard.gif" alt="05-admin-dashboard" width="100%" /></td>
-  <td><img src="screenshots/gifs/06-admin-category.gif" alt="06-admin-category" width="100%" /></td>
+  <td><img src="screenshots/gifs/16-adoption-apply.gif" alt="提交领养申请" width="100%" /></td>
+  <td><img src="screenshots/gifs/17-my-applications.gif" alt="我的申请" width="100%" /></td>
 </tr>
 <tr>
-  <th>⑳ 新增宠物（表单 + 分类选择）</th>
-  <th>㉑ 领养记录与回访登记</th>
+  <th>⑳ 管理员审核通过（状态机流转）</th>
+  <th></th>
 </tr>
 <tr>
-  <td><img src="screenshots/gifs/18-admin-pet-add.gif" alt="18-admin-pet-add" width="100%" /></td>
-  <td><img src="screenshots/gifs/19-admin-record.gif" alt="19-admin-record" width="100%" /></td>
-</tr>
-<tr>
-  <th>㉒ 用户管理</th>
-  <th>㉓ 内容管理（须知 / 常识 / 收容所）</th>
-</tr>
-<tr>
-  <td><img src="screenshots/gifs/20-admin-user.gif" alt="20-admin-user" width="100%" /></td>
-  <td><img src="screenshots/gifs/21-admin-content.gif" alt="21-admin-content" width="100%" /></td>
+  <td><img src="screenshots/gifs/19-review-approve.gif" alt="审核通过" width="100%" /></td>
+  <td></td>
 </tr>
 </table>
 
-> 视频均为真实操作录屏：登录/注册走真实 Redis 验证码校验，申请与审核均为真实接口调用，WebSocket 推送为真实时序（非摆拍）。
+> ⑯ → ⑳ → ⑰ 是**同一条申请**的完整时序：申请提交后管理员端铃铛实时亮起，审核通过后用户端立刻收到通知，全程无需刷新页面。
+> ⑱ 弹窗会自动从个人中心带入手机号和地址（`PetDetail.vue` 读`userStore.userInfo` 预填），不需要重复填写。
+
+#### F. 后台管理
+
+<table>
+<tr>
+  <th>㉑ 数据仪表盘（ECharts 趋势 + 分类占比）</th>
+  <th>㉒ 分类管理（新增 / 拖拽排序 / 编辑 / 删除）</th>
+</tr>
+<tr>
+  <td><img src="screenshots/gifs/21-admin-dashboard.gif" alt="数据仪表盘" width="100%" /></td>
+  <td><img src="screenshots/gifs/22-admin-category.gif" alt="分类管理" width="100%" /></td>
+</tr>
+<tr>
+  <th>㉓ 新增宠物</th>
+  <th>㉔ 领养记录与回访登记</th>
+</tr>
+<tr>
+  <td><img src="screenshots/gifs/23-admin-pet-add.gif" alt="新增宠物" width="100%" /></td>
+  <td><img src="screenshots/gifs/24-admin-record.gif" alt="回访登记" width="100%" /></td>
+</tr>
+<tr>
+  <th>㉕ 内容管理（须知 / 常识 / 收容所）</th>
+  <th>㉖ 领养故事审核（标记展示）</th>
+</tr>
+<tr>
+  <td><img src="screenshots/gifs/25-admin-content.gif" alt="内容管理" width="100%" /></td>
+  <td><img src="screenshots/gifs/27-admin-story.gif" alt="故事审核" width="100%" /></td>
+</tr>
+</table>
+
+#### G. 个人中心
+
+<table>
+<tr>
+  <th>㉗ 个人信息 / 密保问题 / 修改密码（两种验证方式）</th>
+  <th></th>
+</tr>
+<tr>
+  <td><img src="screenshots/gifs/26-profile.gif" alt="个人中心" width="100%" /></td>
+  <td></td>
+</tr>
+</table>
+
+> 修改密码支持两种身份验证：**当前密码**或**密保验证**（后者需先在「密保问题」Tab 添加至少一个问题，否则按钮置灰）。
 
 ---
 
