@@ -67,21 +67,29 @@
 > 各脚本的参数与排错见 [`scripts/README.txt`](./scripts/README.txt)。
 
 
-### 代表功能
+### 代表功能 · 领养全链路实时闭环（四段实拍串起来看）
 
 <table>
 <tr>
-  <th>用户侧 · 领养申请全流程（资料自动带入）</th>
-  <th>管理侧 · 后台数据可视化仪表盘</th>
+  <th>① 用户 · 提交领养申请（资料自动带入）</th>
+  <th>② 管理员 · 后台实时弹待审提醒</th>
 </tr>
 <tr>
-  <td><img src="screenshots/gifs/16-adoption-apply.gif" alt="领养申请全流程" width="100%" /></td>
-  <td><img src="screenshots/gifs/21-admin-dashboard.gif" alt="后台数据仪表盘" width="100%" /></td>
+  <td><img src="screenshots/gifs/16-adoption-apply.gif" alt="用户提交领养申请" width="100%" /></td>
+  <td><img src="screenshots/gifs/18-realtime-admin.gif" alt="管理员实时收到待审提醒" width="100%" /></td>
+</tr>
+<tr>
+  <th>③ 管理员 · 审核通过（生成领养记录）</th>
+  <th>④ 用户 · 实时收到审核结果</th>
+</tr>
+<tr>
+  <td><img src="screenshots/gifs/19-review-approve.gif" alt="管理员审核通过" width="100%" /></td>
+  <td><img src="screenshots/gifs/20-realtime-user.gif" alt="用户实时收到审核结果" width="100%" /></td>
 </tr>
 </table>
 
-> 领养申请提交后经 WebSocket 实时推送：管理员后台即时收到待审提醒，审核结果又实时回推给用户 —— 双向闭环。
-> 完整的 27 段演示在下方折叠区 👇
+> 一份申请，四段实拍 —— 提交、提醒、审核、回执全程 **WebSocket 实时推送**，用户和管理员两边都不用刷新页面。
+> 后台还有数据可视化仪表盘（ECharts 趋势 + 分类占比 + 待审统计），完整 27 段演示在下方折叠区 👇
 
 ---
 
