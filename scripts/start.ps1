@@ -211,18 +211,32 @@ if (Test-Port 3001) {
 }
 
 # ---------- 10. 打开浏览器 ----------
-$chromePaths = @(
+# 依次尝试 Chrome → Edge → 系统默认浏览器；过滤掉 0 字节的残留占位文件，
+# 并且任何一步失败都不影响服务本身（大不了手动访问 localhost:3001）
+$browserPaths = @(
     (Join-Path $env:ProgramFiles 'Google\Chrome\Application\chrome.exe'),
     (Join-Path ${env:ProgramFiles(x86)} 'Google\Chrome\Application\chrome.exe'),
-    (Join-Path $env:LOCALAPPDATA 'Google\Chrome\Application\chrome.exe')
-) | Where-Object { $_ -and (Test-Path $_) }
+    (Join-Path $env:LOCALAPPDATA 'Google\Chrome\Application\chrome.exe'),
+    (Join-Path ${env:ProgramFiles(x86)} 'Microsoft\Edge\Application\msedge.exe'),
+    (Join-Path $env:ProgramFiles 'Microsoft\Edge\Application\msedge.exe')
+) | Where-Object { $_ -and (Test-Path $_) -and ((Get-Item $_ -ErrorAction SilentlyContinue).Length -gt 0) }
 
-if ($chromePaths.Count -gt 0) {
-    Start-Process $chromePaths[0] -ArgumentList 'http://localhost:3001'
-    Log '已用 Chrome 打开'
-} else {
-    Start-Process 'http://localhost:3001'
-    Log '未找到 Chrome，已用默认浏览器打开'
+$opened = $false
+foreach ($browser in $browserPaths) {
+    try {
+        Start-Process $browser -ArgumentList 'http://localhost:3001' -ErrorAction Stop
+        Log "已用 $(Split-Path $browser -Leaf) 打开"
+        $opened = $true
+        break
+    } catch { }
+}
+if (-not $opened) {
+    try {
+        Start-Process 'http://localhost:3001' -ErrorAction Stop
+        Log '未找到 Chrome/Edge，已用默认浏览器打开'
+    } catch {
+        Log '自动打开浏览器失败，请手动访问 http://localhost:3001'
+    }
 }
 
 Log '全部完成！后端 8081 / 前端 3001 / Redis 6379'
