@@ -60,12 +60,17 @@
 > 定位仓库根目录，所以 `.env` / `docker-compose.yml` / `demo-data/` 的相对路径不受位置影响。
 > 各脚本的参数与排错见 [`scripts/README.txt`](./scripts/README.txt)。
 
-### 代表功能
+### 代表功能（真实操作录屏，自动循环）
 
-| 领养申请（资料自动带入） | 后台数据仪表盘 |
+| 用户端：提交领养申请 | 管理端：审核通过 |
 |:---:|:---:|
-| ![领养申请审核](screenshots/24-admin-approval.png) | ![后台数据仪表盘](screenshots/14-admin-dashboard.png) |
-| **用户侧：填资料 → 提交 → 实时收到审核结果** | **管理侧：ECharts 趋势 + 分类占比 + 待审统计** |
+| ![提交领养申请](screenshots/gifs/16-adoption-apply.gif) | ![审核通过](screenshots/gifs/19-review-approve.gif) |
+| 资料从个人中心自动带入 → 填理由 → 提交，徽标实时亮起 | ECharts 趋势 + 分类占比；审核后用户端立刻收到通知 |
+
+| 首页（动态光晕 + 实时统计） | 后台数据仪表盘 |
+|:---:|:---:|
+| ![首页](screenshots/gifs/06-home.gif) | ![后台数据仪表盘](screenshots/gifs/21-admin-dashboard.gif) |
+| 10 套主题一键切换、领养数据实时统计 | 12 个月趋势 + 分类占比 + 待审/领养中/已领养 |
 
 ---
 
