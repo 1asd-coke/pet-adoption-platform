@@ -113,6 +113,37 @@
 | **领养须知编辑器（多章节）** | **收容所信息管理** |
 | ![领养须知编辑器](screenshots/19-guide-manage.png) | ![收容所信息管理](screenshots/20-admin-shelter.png) |
 
+**🎬 动图演示**
+
+<table>
+<tr>
+  <th>登录全流程（Redis 算术验证码）</th>
+  <th>主题一键切换（10 套配色）</th>
+</tr>
+<tr>
+  <td><video src="screenshots/clips/login-flow.mp4" controls muted preload="metadata" width="100%"></video></td>
+  <td><video src="screenshots/clips/theme-switch.mp4" controls muted preload="metadata" width="100%"></video></td>
+</tr>
+<tr>
+  <th>领养申请全流程</th>
+  <th>后台数据可视化仪表盘</th>
+</tr>
+<tr>
+  <td><video src="screenshots/clips/adoption-apply.mp4" controls muted preload="metadata" width="100%"></video></td>
+  <td><video src="screenshots/clips/admin-dashboard.mp4" controls muted preload="metadata" width="100%"></video></td>
+</tr>
+<tr>
+  <th>WebSocket 实时通知 · 管理员端（右页提交申请，铃铛实时亮起）</th>
+  <th>WebSocket 实时通知 · 用户端（审核通过瞬间送达）</th>
+</tr>
+<tr>
+  <td><video src="screenshots/clips/realtime-admin.mp4" controls muted preload="metadata" width="100%"></video></td>
+  <td><video src="screenshots/clips/realtime-user.mp4" controls muted preload="metadata" width="100%"></video></td>
+</tr>
+</table>
+
+> 视频为真实操作录屏：登录走 Redis 验证码、申请/审核均为真实接口调用，WebSocket 推送为真实时序（非摆拍）。
+
 ---
 
 ## 📁 项目结构
